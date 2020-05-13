@@ -150,7 +150,7 @@
                     <img alt="Image placeholder" src="{{url('../imgs/team-1.jpg')}}">
                   </span>
                   <div class="media-body ml-2 d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">Mohamed Ahmed</span>
+                    <span class="mb-0 text-sm  font-weight-bold">{{$patient->firstName}}</span>
                   </div>
                 </div>
               </a>
@@ -175,7 +175,7 @@
                   <span>Support</span>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#!" class="dropdown-item">
+                <a href="{{route('patien.logout')}}" class="dropdown-item">
                   <i class="ni ni-user-run"></i>
                   <span>Logout</span>
                 </a>
@@ -194,7 +194,7 @@
       <div class="container-fluid d-flex align-items-center">
         <div class="row">
           <div class="col-lg-8 col-md-10">
-            <h1 class="display-2 text-white">Hello Mohamed</h1>
+            <h1 class="display-2 text-white">Hello {{$patient->firstName}}</h1>
           </div>
         </div>
       </div>
@@ -238,13 +238,13 @@
                   </div>
                 </div>
               </div>
-              <h5 class="h3 font-weight-700 mb-5 text-center mt-3">Mohamed Ahmed Mohamed</h5>
+              <h5 class="h3 font-weight-700 mb-5 text-center mt-3">{{$patient->firstName}}</h5>
               <div class="">
-                <h5 class="h4 mt-3"><i class="fas fa-male mr-4"></i>Male</h5>
-                <h5 class="h4  mt-3"><i class="fa fa-calendar-check mr-3" aria-hidden="true"></i> 22-6-1989</h5>
-                <div class="h4  mt-3"><i class="fas fa-location-arrow mr-3"></i> Egypt</div>
-                <div class="h4  mt-3"><i class="fas fa-mail-bulk mr-3"></i> MohammedAhmed@gmail.com</div>
-                <div class="h4 mt-3 mb-5"><i class="fa fa-phone mr-3" aria-hidden="true"></i> +966 5599 999 9999
+                <h5 class="h4 mt-3"><i class="fas fa-male mr-4"></i>{{$patient->gender}}</h5>
+                <h5 class="h4  mt-3"><i class="fa fa-calendar-check mr-3" aria-hidden="true"></i> {{$patient->BirthDate}}</h5>
+                <div class="h4  mt-3"><i class="fas fa-location-arrow mr-3"></i> {{$patient->country}}</div>
+                <div class="h4  mt-3"><i class="fas fa-mail-bulk mr-3"></i> {{$patient->email}}</div>
+                <div class="h4 mt-3 mb-5"><i class="fa fa-phone mr-3" aria-hidden="true"></i> {{$patient->phoneNumber}}
                 </div>
               </div>
             </div>

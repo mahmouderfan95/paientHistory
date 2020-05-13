@@ -12,6 +12,8 @@
         {{-- <link href="https://fonts.googleapis.com/css?family=Chewy|Covered+By+Your+Grace&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai|Ma+Shan+Zheng|Roboto+Condensed|Sniglet&display=swap" rel="stylesheet"> --}}
         <link rel="stylesheet" href="{{url('css/style.css')}}">
+        <link rel="stylesheet" href="{{url('../css/argon.css?v=1.2.0')}}" type="text/css">
+        <link rel="stylesheet" href="{{url('../css/styleProfile.css')}}" type="text/css">
     </head>
     <body class="bg-About">
         <div class="main">

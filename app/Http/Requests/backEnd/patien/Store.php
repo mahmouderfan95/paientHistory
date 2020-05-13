@@ -37,6 +37,7 @@ class Store extends FormRequest
             'password'          => 'required|confirmed',
             'password_confirmation'=>'sometimes|required_with:password',
             'state'             => 'required',
+            'role'              => '',
         ];
     }
 }

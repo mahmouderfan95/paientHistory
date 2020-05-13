@@ -27,6 +27,13 @@ class CreatePatiensTable extends Migration
             $table->string('country');
             $table->string('password');
             $table->string('state');
+            $table->integer('height')->default(150);
+            $table->integer('width')->default(70);
+            $table->string('address')->default('write address');
+            $table->string('city')->default('write city');
+            $table->integer('postalCode')->nullable();
+            $table->text('aboutMe')->default('about me bla bla bla');
+            $table->string('role');
             $table->timestamps();
         });
     }

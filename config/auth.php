@@ -40,6 +40,30 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'patien' => [
+            'driver' => 'session',
+            'provider' => 'patien',
+        ],
+        'clinic' => [
+            'driver' => 'session',
+            'provider' => 'clinic',
+        ],
+        'hosptail' => [
+            'driver' => 'session',
+            'provider' => 'hosptail',
+        ],
+        'x-ray' => [
+            'driver' => 'session',
+            'provider' => 'x-ray',
+        ],
+        'lab' => [
+            'driver' => 'session',
+            'provider' => 'lab',
+        ],
+        'pharmacy' => [
+            'driver' => 'session',
+            'provider' => 'pharmacy',
+        ],
 
         'api' => [
             'driver' => 'token',
@@ -71,10 +95,32 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'patien' => [
+            'driver' => 'eloquent',
+            'model' => App\models\Patien::class,
+        ],
+        'clinic' => [
+            'driver' => 'eloquent',
+            'model' => App\models\Clinic::class,
+        ],
+        'hosptail' => [
+            'driver' => 'eloquent',
+            'model' => App\models\Hosptail::class,
+        ],
+        'x-ray' => [
+            'driver' => 'eloquent',
+            'model' => App\models\Xray::class,
+        ],
+        'lab' => [
+            'driver' => 'eloquent',
+            'model' => App\models\Lab::class,
+        ],
+        'pharmacy' => [
+            'driver' => 'eloquent',
+            'model' => App\models\Pharmacy::class,
+        ],
+
+
     ],
 
     /*

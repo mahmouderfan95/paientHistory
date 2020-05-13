@@ -60,6 +60,13 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'is_patient'    => \App\Http\Middleware\is_patient::class,
+        'is_clinic'    => \App\Http\Middleware\is_clinic::class,
+        'is_hosptail'    => \App\Http\Middleware\is_hosptail::class,
+        'is_xray'    => \App\Http\Middleware\is_xray::class,
+        'is_lab'    => \App\Http\Middleware\is_lab::class,
+        'is_pharmacy'    => \App\Http\Middleware\is_pharmacy::class,
+
         /**** OTHER MIDDLEWARE ****/
         'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
         'localizationRedirect'    => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
