@@ -25,52 +25,72 @@
       <!--End-content-->
       <!--Start-Login-->
     <section class="bg-login text-center col-md-10">
-        <section class="radio-toolbar">
-          <div class="row middle">
-            <div class="col-lg-12">
-                <label class="m-2">
-                  <input type="radio" name="guard" value="patien"/><div class="box" checked >
-                    <img class="mt-2" src="{{url('imgs/Patirnt.svg')}}" height="60" alt="...">
-                    <span>Patient</span>
-                  </div>
-                </label>
-                <label class="m-2">
-                  <input type="radio" name="guard" value="clinic"/><div class="box">
-                    <img class="mt-2" src="{{url('imgs/Clinic.svg')}}" height="60" alt="...">
-                    <span>Clinic</span>
-                  </div>
-                </label>
-                <label class="m-2">
-                  <input type="radio" name="guard" value="hospital"/><div class="box">
-                    <img class="mt-2" src="{{url('imgs/Hospital.svg')}}" height="60" alt="...">
-                    <span>Hospital</span>
-                  </div>
-                </label>
-                <label class="m-2">
-                  <input type="radio" name="guard" value="x-ray"/><div class="box">
-                    <img class="mt-2" src="{{url('imgs/x-ray.svg')}}" height="60" alt="...">
-                    <span>X-ray</span>
-                  </div>
-                </label>
-                <label class="m-2">
-                  <input type="radio" name="guard" value="labs"/><div class="box">
-                    <img class="mt-2" src="{{url('imgs/labs.svg')}}" height="60" alt="...">
-                    <span>Labs</span>
-                  </div>
-                </label>
-                <label class="m-2">
-                  <input type="radio" name="guard" value="pharmacy"/><div class="box">
-                    <img class="mt-2" src="{{url('imgs/pharmacy.svg')}}" height="60" alt="...">
-                    <span>Pharmacy</span>
-                  </div>
-                </label>
-              </div>
-          </div>
-        </section>
-
+         <!-- form login -->
+         @if(session('msg'))
+            <div class="alert alert-danger">{{session('msg')}}</div>
+         @endif
+         <form action="{{route('loginRoute')}}" method="POST">
+            {{ csrf_field() }}
+            <!-- radio button -->
+            <section class="radio-toolbar">
+            <div class="row middle">
+                <div class="col-lg-12">
+                    <label class="m-2">
+                    <input type="radio" name="guard" value="patien"/><div class="box" checked >
+                        <img class="mt-2" src="{{url('imgs/Patirnt.svg')}}" height="60" alt="...">
+                        <span>Patient</span>
+                    </div>
+                    </label>
+                    <label class="m-2">
+                    <input type="radio" name="guard" value="clinic"/><div class="box">
+                        <img class="mt-2" src="{{url('imgs/Clinic.svg')}}" height="60" alt="...">
+                        <span>Clinic</span>
+                    </div>
+                    </label>
+                    <label class="m-2">
+                    <input type="radio" name="guard" value="hosptail"/><div class="box">
+                        <img class="mt-2" src="{{url('imgs/Hospital.svg')}}" height="60" alt="...">
+                        <span>Hospital</span>
+                    </div>
+                    </label>
+                    <label class="m-2">
+                    <input type="radio" name="guard" value="x-ray"/><div class="box">
+                        <img class="mt-2" src="{{url('imgs/x-ray.svg')}}" height="60" alt="...">
+                        <span>X-ray</span>
+                    </div>
+                    </label>
+                    <label class="m-2">
+                    <input type="radio" name="guard" value="lab"/><div class="box">
+                        <img class="mt-2" src="{{url('imgs/labs.svg')}}" height="60" alt="...">
+                        <span>Labs</span>
+                    </div>
+                    </label>
+                    <label class="m-2">
+                    <input type="radio" name="guard" value="pharmacy"/><div class="box">
+                        <img class="mt-2" src="{{url('imgs/pharmacy.svg')}}" height="60" alt="...">
+                        <span>Pharmacy</span>
+                    </div>
+                    </label>
+                </div>
+            </div>
+            </section>
+            <!-- radio button -->
         <div class="container row">
-          <div class="col-md-6 form">
-            @include('backEnd.formLogin')
+            <div class="col-md-6 form">
+                <p class="group">
+                <input id="name" type="email" required name="email">
+                <label for="name">Email or Phone Namber</label>
+                </p>
+                <p class="group">
+                <input id="Password" type="password" required name="password">
+                <label for="name">Password</label>
+                </p><br/>
+                <a class="text-forget" href="loginAbout.html">Forget Password?</a>
+                <input type="submit" value="Submit">
+            </form>
+            <!-- form login -->
+
+            {{-- @include('backEnd.formLogin') --}}
           </div>
         </div>
         <div class="text-account">

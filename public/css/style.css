@@ -807,7 +807,7 @@ input[type="checkbox"]:checked::before {
     color: #868686;
   }
 
-  .form .group input[type=text], .form .group [type=password] {
+  .form .group input[type=text], .form .group [type=password] , .form .group [type=email] {
     background-color: transparent;
     padding: 0.75em 1.5em;
     line-height: 1.5em;
@@ -826,11 +826,11 @@ input[type="checkbox"]:checked::before {
     transition: 0.3s cubic-bezier(0.64, 0.09, 0.08, 1) all;
   }
 
-  .form .group input[type=text]:focus, .form .group input[type=text]:valid, .form .group [type=password]:focus, .form .group [type=password]:valid {
+  .form .group input[type=text]:focus, .form .group input[type=text]:valid, .form .group [type=password]:focus, .form .group [type=password]:valid,.form .group [type=password]:focus, .form .group [type=email]:valid {
     background-position: 0 0;
   }
 
-  .form .group input[type=text]:focus ~ label, .form .group input[type=text]:valid ~ label, .form .group [type=password]:focus ~ label, .form .group [type=password]:valid ~ label {
+  .form .group input[type=text]:focus ~ label,.form .group input[type=email]:focus ~ label, .form .group input[type=text]:valid ~ label, .form .group [type=password]:focus ~ label, .form .group [type=password]:valid ~ label {
     color: #0478c9;
     font-size: 12pt;
     font-weight: 700;

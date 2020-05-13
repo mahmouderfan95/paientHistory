@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="{{url('../css/styleProfile.css')}}" type="text/css">
     </head>
     <body class="bg-About">
+
         <div class="main">
             @yield('content')
         </div>
@@ -28,6 +29,11 @@
         <script src="{{url('js/typed.js')}}"></script>
         <script src="{{url('js/main.js')}}"></script>
         <script src="{{url('js/stepper.js')}}"></script>
+        <script>
+
+
+
+        </script>
         <!-- scripts -->
     </body>
 

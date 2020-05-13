@@ -58,4 +58,5 @@ class pharmacyController extends Controller
         return redirect()->route('indexRoute');
     }
     /* end of function */
+
 }

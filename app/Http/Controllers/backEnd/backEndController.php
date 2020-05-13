@@ -22,19 +22,20 @@ class backEndController extends Controller
     /* end of function */
     public function login(REQUEST $request){
         $arr = [
-            'email' => 'required|email',
-            'password'  => 'required'
+            'email' => 'required',
+            'password'  => 'required',
+            'guard'     => 'required|in:patien,clinic,hosptail,x-ray,labs,pharmacy'
         ];
 
         $vaild = Validator::make($request->all(),$arr);
         if($vaild->fails()){
-            return response()->json(['status'=> false]);
+            return redirect()->back();
         }
-        if(! Auth::guard($request->get('guard'))->attempt(['email'=>$request->email,
-        'password'  => bcrypt($request->password)])){
-            return dd($request->all());
+        $attmp = $request->only('email','password');
+        if(! Auth::guard($request->get('guard'))->attempt($attmp)){
+            return redirect()->back()->with('msg','email or passord incorrect');
         }
-        return redirect($request->get('guard') . '/profile' . $request->id);
+        return redirect('en/dashbord/' . $request->get('guard') . '/profile' . '/' . auth()->guard($request->get('guard'))->user()->id);
 
 
     }

@@ -46,4 +46,12 @@ class labsController extends Controller
         // return redirct //
         return redirect()->route('labs.profile',$lab_create['id']);
     }
+    public function profile($id){
+        $labs = Lab::find($id);
+        return view('backEnd.labs.profile',compact('labs'));
+    }
+    public function logout(){
+        Auth::guard('lab')->logout();
+        return redirect()->route('indexRoute');
+    }
 }
