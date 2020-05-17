@@ -101,5 +101,8 @@
     </section>
     <!--End-Login-->
 
+    <!-- footer -->
+    @include('backEnd.layoutes.footer')
+
 
 @stop

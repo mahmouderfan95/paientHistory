@@ -12,6 +12,8 @@ Route::group(
             Route::get('/patien/register','patienController@register')->name('patienRegister');
             Route::post('/patien/register','patienController@postRegister')->name('patien_post_Register');
             Route::get('/patien/profile/{id}','patienController@profile')->name('patien-profile')->middleware('is_patient');
+            Route::get('/patien/edit-profile/{id}','patienController@editProfile')->name('edit.profile')->middleware('is_patient');
+            Route::put('patien/update/profile/{id}','patienController@updateProfile')->name('update.profile');
             Route::get('/patien/logout','patienController@logout')->name('patien.logout');
             /* patient routes */
             /* clinic routes */
@@ -29,7 +31,7 @@ Route::group(
             /* xray routes */
             Route::get('/xray/register','xrayController@register')->name('xrayRegister');
             Route::post('/xray/register','xrayController@postRegister')->name('xray_post_Register');
-            Route::get('/xray/profile/{id}','xrayController@profile')->name('xray.profile')->middleware('is_xray');
+            Route::get('/x-ray/profile/{id}','xrayController@profile')->name('xray.profile')->middleware('is_xray');
             Route::get('/xray/logout','xrayController@logout')->name('xray.logout');
             /* xray routes */
             /* labs routes */

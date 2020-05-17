@@ -9,5 +9,21 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Hosptail extends Authenticatable implements MustVerifyEmail
 {
-    protected $fillable = ['image','hosptailName','Primary_Speciality','Medical_License_Number','Hosptail_License','phoneNumber','telephone','Hotline','country','city','area','street','zip_code','email','password','role'];
+    protected $fillable = [
+    'image',
+    'hosptailName',
+    'Primary_Speciality',
+    'Medical_License_Number',
+    'Hosptail_License',
+    'phoneNumber',
+    'telephone',
+    'Hotline',
+    'country',
+    'city',
+    'area',
+    'street',
+    'zip_code',
+    'email',
+    'password',
+    'role'];
 }

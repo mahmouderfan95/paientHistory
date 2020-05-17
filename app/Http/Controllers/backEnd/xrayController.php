@@ -44,7 +44,7 @@ class xrayController extends Controller
         /* send mail */
         Mail::to($xray_create->email)->send(new xrayCreate($xray_create));
         /* login */
-        Auth::guard('x-ray')->login($xray_create);
+        Auth::guard('xray')->login($xray_create);
         // return redirct //
         return redirect()->route('xray.profile',$xray_create['id']);
     }

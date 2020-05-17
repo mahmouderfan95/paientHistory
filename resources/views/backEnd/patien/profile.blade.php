@@ -1,82 +1,26 @@
 @extends('backEnd.layoutes.mastar')
 @section('title','Profile')
 @section('content')
-<!-- Sidenav -->
-<nav class="sidenav navbar navbar-vertical fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
-    <div class="scrollbar-inner">
-      <!-- Brand -->
-      <div class="sidenav-header  align-items-center">
-        <a class="navbar-brand" href="javascript:void(0)">
-          <img src="{{url('../assets/img/brand/logoww.svg')}}" class="navbar-brand-img" alt="...">
-        </a>
-      </div>
-      <div class="navbar-inner">
-        <!-- Collapse -->
-        <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-          <!-- Nav items -->
-          <ul class="navbar-nav ">
-            <li class="nav-item">
-              <a class="nav-link" href="../PatientProfile.html">
-                <i class="ni ni-single-02 text-primary"></i>
-                <span class="nav-link-text">Profile</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="Try.html">
-                <i class="ni ni-tv-2 text-primary"></i>
-                <span class="nav-link-text">try</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="examples/icons.html">
-                <i class="fas fa-clock text-green"></i>
-                <span class="nav-link-text">Pills Time</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-primary active" href="EditProfile.html">
-                <i class="fas fa-user-edit text-red "></i>
-                <span class="nav-link-text">Edit Profile</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="examples/logout.html">
-                <i class="ni ni-key-25 text-info"></i>
-                <span class="nav-link-text">Logout</span>
-              </a>
-            </li>
-          </ul>
-          <!-- Divider -->
-          <hr class="my-3">
-          <li class="nav-item list-unstyled">
-            <a class="nav-link text-primary active" href="index.html">
-              <span class="nav-link-text">About</span>
-            </a>
-          </li>
-          <li class="nav-item list-unstyled">
-            <a class="nav-link text-primary active" href="index.html">
-              <span class="nav-link-text">Contact</span>
-            </a>
-          </li>
-        </div>
-      </div>
-    </div>
-  </nav>
+<!-- profile patient -->
+@include('backEnd.patien.slidenav')
   <!-- Main content -->
-  <div class="main-content" id="panel">
-    <!-- Topnav -->
+  <div class="main-content bg-main" id="panel">
+        <!-- Topnav -->
     <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Search form -->
-          <form class="form-inline mr-sm-3" id="navbar-search-main">
-            <label class="switch">
-              <input type="checkbox">
-              <span class="slider round"></span>
-            </label>
-          </form>
           <!-- Navbar links -->
-          <ul class="navbar-nav align-items-center  ml-md-auto ">
+          <!-- Search form -->
+          <ul class="float-lg-right pr-5">
+            <div class="toggle toggle__wrapper">
+              <div id="toggle-example-1"  role="switch" aria-checked="false" class="toggle__button">
+                <div class="toggle__switch"></div>
+              </div>
+              </span>
+            </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav align-items-center ml-md-auto ">
             <li class="nav-item d-xl-none">
               <!-- Sidenav toggler -->
               <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main">
@@ -89,7 +33,7 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="ni ni-bell-55"></i>
+                <i class="ni ni-bell-55" style="font-size: 15pt;"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-xl  dropdown-menu-right  py-0 overflow-hidden">
                 <!-- Dropdown header -->
@@ -102,7 +46,7 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <!-- Avatar -->
-                        <img alt="Image placeholder" src="{{url('../imgs/theme/team-1.jpg')}}" class="avatar rounded-circle">
+                        <img alt="Image placeholder" src="{{url('imgs/team-1.jpg')}}" class="avatar rounded-circle">
                       </div>
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -121,7 +65,7 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <!-- Avatar -->
-                        <img alt="Image placeholder" src="{{url('../imgs/theme/team-2.jpg')}}" class="avatar rounded-circle">
+                        <img alt="Image placeholder" src="{{url('imgs/team-1.jpg')}}" class="avatar rounded-circle">
                       </div>
                       <div class="col ml--2">
                         <div class="d-flex justify-content-between align-items-center">
@@ -142,196 +86,605 @@
               </div>
             </li>
           </ul>
-          <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+          <ul class="navbar-nav align-items-center ml-auto ml-md-0 ">
             <li class="nav-item dropdown">
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="{{url('../imgs/team-1.jpg')}}">
+                    <img alt="Image placeholder" src="{{url('imgs/team-1.jpg')}}">
                   </span>
-                  <div class="media-body ml-2 d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">{{$patient->firstName}}</span>
+                  <div class="media-body ml-3 d-none d-lg-block">
+                    <h3 class="mb-0 font-weight-bold">Mohamed Ahmed</h3>
                   </div>
                 </div>
               </a>
-              <div class="dropdown-menu  dropdown-menu-right ">
-                <div class="dropdown-header noti-title">
-                  <h6 class="text-overflow m-0">Welcome!</h6>
-                </div>
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-single-02"></i>
-                  <span>My profile</span>
-                </a>
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-settings-gear-65"></i>
-                  <span>Settings</span>
-                </a>
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-calendar-grid-58"></i>
-                  <span>Activity</span>
-                </a>
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-support-16"></i>
-                  <span>Support</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="{{route('patien.logout')}}" class="dropdown-item">
-                  <i class="ni ni-user-run"></i>
-                  <span>Logout</span>
-                </a>
-              </div>
             </li>
           </ul>
         </div>
       </div>
     </nav>
     <!-- Header -->
+
     <!-- Header -->
-    <div class="header pb-5 d-flex align-items-center" style="min-height: 400px; background-image: url(../assets/img/03.jpg); background-size: cover; background-position: center top;">
-      <!-- Mask -->
-      <span class="mask bg-gradient-white opacity-1"></span>
-      <!-- Header container -->
-      <div class="container-fluid d-flex align-items-center">
-        <div class="row">
-          <div class="col-lg-8 col-md-10">
-            <h1 class="display-2 text-white">Hello {{$patient->firstName}}</h1>
+    <div class="header img-header pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row pt-5">
+            <div class="col-xl-4 col-md-4 col-xs-12">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-3">Height</h5>
+                      <span class="h2 font-weight-bold mb-0">170 Cm</span>
+                    </div>
+                    <div class="col-auto">
+                      <div>
+                        <img src="{{url('imgs/height.png')}}" width="60" alt="...">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-4">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-3">Weight</h5>
+                      <span class="h2 font-weight-bold mb-0">80 Kg</span>
+                    </div>
+                    <div class="col-auto">
+                      <div>
+                        <img src="{{url('imgs/Wight.png')}}" width="50" alt="...">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-4">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-3">Blood</h5>
+                      <span class="h2 font-weight-bold mb-0">AB+</span>
+                    </div>
+                    <div class="col-auto">
+                      <div>
+                        <img src="{{url('imgs/blood.png')}}" width="50" alt="...">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-12 col-md-6">
+              <div class="card card-stats female-bg">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-auto">
+                      <div>
+                        <img src="{{url('imgs/clender.png')}}" width="40" alt="...">
+                      </div>
+                    </div>
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Female</h5>
+                      <span class="h2 font-weight-bold mb-0"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+          <p><a href="#" class="btn hvr-grow buttom px-4 py-2 float-right"><i class="fas fa-edit"></i> &nbsp;Edit</a></p>
+        </div>
+      </div>
+    </div>
+    <!-- Information -->
+    <div class=" mt-5 ml-5 mb-4">
+      <div class="nav row testimonial-group nav-pills" id="v-pills-tab" role="tablist" aria-orientation="horizontal">
+        <a class="nav-link col-xs-4 p-1 mr-1 active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">
+          <div class="row">
+            <div class="col-4">
+              <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+            </div>
+            <div class="col-6">
+              <h4 class="text-pills mt-4">Diseases</h4>
+            </div>
+          </div>
+        </a>
+        <a class="nav-link col-xs-4 p-1 mr-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">
+          <div class="row">
+            <div class="col-4">
+              <img src="{{url('imgs/02.png')}}" width="60" alt="...">
+            </div>
+            <div class="col-8">
+              <h4 class="text-pills  ml--1 mt-4">Medication</h4>
+            </div>
+          </div>
+        </a>
+        <a  class="nav-link col-xs-4 p-1 mr-1" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">
+          <div class="row">
+            <div class="col-4">
+              {{-- <img src="{{url('imgs/03.jpg')}}" width="60" alt="..."> --}}
+            </div>
+            <div class="col-8">
+              <h4 class="text-pills ml-1 mt-4">Allergies</h4>
+            </div>
+          </div>
+        </a>
+        <a  class="nav-link col-xs-4 p-1 mr-1" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false">
+          <div class="row">
+            <div class="col-4">
+              <img src="{{url('imgs/04.png')}}" width="60" alt="...">
+            </div>
+            <div class="col-8">
+              <h4 class="text-pills mt-4">Surgeries</h4>
+            </div>
+          </div>
+        </a>
+        <a class="nav-link col-xs-4 p-1 mr-1" id="v-pills-5-tab" data-toggle="pill" href="#v-pills-5" role="tab" aria-controls="v-pills-5" aria-selected="false">
+          <div class="row">
+            <div class="col-4">
+              <img src="{{url('imgs/06.png')}}" width="60" alt="...">
+            </div>
+            <div class="col-8">
+              <h4 class=" text-pills mt-4">Somking</h4>
+            </div>
+          </div>
+        </a>
+        <a class="nav-link col-xs-4 p-1 mr-1" id="v-pills-6-tab" data-toggle="pill" href="#v-pills-6" role="tab" aria-controls="v-pills-6" aria-selected="false">
+          <div class="row">
+            <div class="col-4">
+              <img src="{{url('imgs/05.png')}}" width="60" alt="...">
+            </div>
+            <div class="col-8">
+              <h4 class="text-pills mt-4">Screening</h4>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-10 p-4 align-items-center js-fullheight animated">
+        <div class="tab-content mr-auto ml-auto" id="v-pills-tabContent">
+          <div class="tab-pane animated bounce slow py-0 show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
+            <h2 class="col-12 ml-xl-8 mb-4">Diseases</h2>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-2">
+                <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+              </div>
+              <div class="col-8">
+                <h4 class="mt-3">High Blood Pressure</h4>
+              </div>
+            </div>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-2">
+                <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+              </div>
+              <div class="col-8">
+                <h4 class="mt-3">High Blood Pressure</h4>
+              </div>
+            </div>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-2">
+                <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+              </div>
+              <div class="col-8">
+                <h4 class="mt-3">High Blood Pressure</h4>
+              </div>
+            </div>
+            <p><a href="#" class="btn hvr-grow buttom px-4 py-2 float-right"><i class="fas fa-edit"></i> &nbsp;Edit</a></p>
+          </div>
+
+          <div class="tab-pane animated bounce slow py-0" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
+            <h2 class="col-12 ml-xl-8 mb-4">Medication</h2>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-2">
+                <img src="{{url('imgs/02.png')}}" width="60" alt="...">
+              </div>
+              <div class="col-8">
+                <h4 class="mt-3">High Blood Pressure</h4>
+              </div>
+            </div>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-2">
+                <img src="{{url('imgs/02.png')}}" width="60" alt="...">
+              </div>
+              <div class="col-8">
+                <h4 class="mt-3">High Blood Pressure</h4>
+              </div>
+            </div>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-2">
+                <img src="{{url('imgs/02.png')}}" width="60" alt="...">
+              </div>
+              <div class="col-8">
+                <h4 class="mt-3">High Blood Pressure</h4>
+              </div>
+            </div>
+            <p><a href="#" class="btn hvr-grow buttom px-4 py-2 float-right"><i class="fas fa-edit"></i> &nbsp;Edit</a></p>
+          </div>
+
+          <div class="tab-pane animated bounce slow py-0" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
+            <h2 class="col-12 ml-xl-8 mb-4">Allergies</h2>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-8">
+                <h3 class="mt-3 pl-4">High Blood Pressure</h3>
+                <h5 class="pl-4"><img src="{{url('imgs/lavel.png')}}" width="50" alt="...">High Blood Pressure</h5>
+                <h5 class="mt--3 pl-3"><img src="{{url('imgs/save.png')}}" width="60" alt="...">High Blood Pressure</h5>
+              </div>
+            </div>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-8">
+                <h3 class="mt-3 pl-4">High Blood Pressure</h3>
+                <h5 class="pl-4"><img src="{{url('imgs/lavel.png')}}" width="50" alt="...">High Blood Pressure</h5>
+                <h5 class="mt--3 pl-3"><img src="{{url('imgs/save.png')}}" width="60" alt="...">High Blood Pressure</h5>
+              </div>
+            </div>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-8">
+                <h3 class="mt-3 pl-4">High Blood Pressure</h3>
+                <h5 class="pl-4"><img src="{{url('imgs/lavel.png')}}" width="50" alt="...">High Blood Pressure</h5>
+                <h5 class="mt--3 pl-3"><img src="{{url('imgs/save.png')}}" width="60" alt="...">High Blood Pressure</h5>
+              </div>
+            </div>
+            <p><a href="#" class="btn hvr-grow buttom px-4 py-2 float-right"><i class="fas fa-edit"></i> &nbsp;Edit</a></p>
+          </div>
+          <div class="tab-pane animated bounce slow py-0" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
+            <h2 class="col-12 ml-xl-8 mb-4">Surgeries</h2>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-8">
+                <h3 class="mt-3 pl-4">High Blood Pressure</h3>
+                <h4 class="mt--2 pl-3"><img src="{{url('imgs/date.png')}}" width="60" alt="...">19/12/2010</h4>
+              </div>
+            </div>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-8">
+                <h3 class="mt-3 pl-4">High Blood Pressure</h3>
+                <h4 class="mt--2 pl-3"><img src="{{url('imgs/date.png')}}" width="60" alt="...">19/12/2010</h4>
+              </div>
+            </div>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-8">
+                <h3 class="mt-3 pl-4">High Blood Pressure</h3>
+                <h4 class="mt--2 pl-3"><img src="{{url('imgs/date.png')}}" width="60" alt="...">19/12/2010</h4>
+              </div>
+            </div>
+            <p><a href="#" class="btn hvr-grow buttom px-4 py-2 float-right"><i class="fas fa-edit"></i> &nbsp;Edit</a></p>
+          </div>
+
+          <div class="tab-pane animated bounce slow py-0" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab">
+            <h2 class="col-12 ml-xl-8 mb-4">Somking</h2>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-8">
+                <h2 class="mt-3 pl-4">Alcohol</h2>
+                <h4 class="pl-3 pl-6">Wine</h4>
+                <h4 class="mt--3 pl-4"><img src="{{url('imgs/lavel.png')}}" width="50" alt="...">Middle</h4>
+              </div>
+            </div>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-8">
+                <h3 class="mt-3 pl-4">Cigarette</h3>
+                <h4 class="pl-3 pl-6">E-Cigar</h4>
+                <h4 class="mt--3 pl-4"><img src="{{url('imgs/date.png')}}" width="50" alt="...">7 Years</h4>
+              </div>
+            </div>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-8">
+                <h3 class="mt-3 pl-4">Tobacco</h3>
+                <h4 class="pl-3 pl-6">Pipe</h4>
+                <h4 class="mt--3 pl-4"><img src="{{url('imgs/lavel.png')}}" width="50" alt="...">Middle</h4>
+              </div>
+            </div>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-8">
+                <h3 class="mt-3 pl-4">Drug</h3>
+                <h4 class="pl-3 pl-6">Wine</h4>
+                <h4 class="mt--3 pl-4"><img src="{{url('imgs/date.png')}}" width="50" alt="...">7 Years</h4>
+              </div>
+            </div>
+            <p><a href="#" class="btn hvr-grow buttom px-4 py-2 float-right"><i class="fas fa-edit"></i> &nbsp;Edit</a></p>
+          </div>
+
+          <div class="tab-pane animated bounce py-0" id="v-pills-6" role="tabpanel" aria-labelledby="v-pills-6-tab">
+            <h2 class="col-12 ml-xl-8 mb-4">Screening</h2>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-8">
+                <h3 class="mt-3 pl-4">Colonscopy</h3>
+                <h4 class="mt--2 pl-3"><img src="{{url('imgs/date.png')}}" width="60" alt="...">19/12/2010</h4>
+              </div>
+            </div>
+            <div class="col-xl-8 col-md-4 col-xs-12 row row-text mb-3 mr-auto ml-auto">
+              <div class="col-8">
+                <h3 class="mt-3 pl-4">Mmamogram</h3>
+                <h4 class="mt--2 pl-3"><img src="{{url('imgs/date.png')}}" width="60" alt="...">19/12/2010</h4>
+              </div>
+            </div>
+            <p><a href="#" class="btn hvr-grow buttom px-4 py-2 float-right"><i class="fas fa-edit"></i> &nbsp;Edit</a></p>
+          </div>
+
         </div>
       </div>
     </div>
     <!-- Page content -->
-    <div class="container-fluid mt--8">
+
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-xl-4 order-xl-2">
-          <div class="card card-profile">
-            <img src="../assets/img/BgLogin.jpg" height="150" alt="Image placeholder" class="card-img-top">
-            <div class="row justify-content-center">
-              <div class="col-lg-3 order-lg-2">
-                <div class="card-profile-image">
-                  <a href="#">
-                    <img src="../assets/img/theme/team-1.jpg" class="rounded-circle">
-                  </a>
+        <div class="col-xl-12">
+          <div class="card bg-default">
+            <div class="card-header bg-transparent">
+              <div class="row align-items-center">
+                <div class="col-10">
+                  <h3 class="text-white text-uppercase mt-3 ls-4 ml-4">Family History</h3>
+                </div>
+                <div class="col-2 justify-content-end">
+                  <a class="mr-3 text-white" type="submit" href="#" id="button"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+                  <a class="text-white" type="submit" href="#" id="button2"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
                 </div>
               </div>
             </div>
-            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-              <div class="d-flex justify-content-between">
-                <a href="#" class="float-right"><i class="fas fa-edit mr-1"></i>Edit</a>
-              </div>
+            <div class="card-body mb-3" id='cont'>
+              <ul class="list-unstyled">
+                <li>
+                  <div class="row row-text-f mb-3">
+                    <div class="col-12">
+                      <h3 class="fH-text">Mother</h3>
+                    </div>
+                    <div class="col-2">
+                      <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+                    </div>
+                    <div class="col-10">
+                      <h4 class="mt-3">High Blood Pressure</h4>
+                  </div>
+                  <div class="col-2">
+                    <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+                  </div>
+                  <div class="col-10">
+                    <h4 class="mt-3">High Blood Pressure</h4>
+                  </div>
+                </li>
+                <li>
+                  <div class="row row-text-f mb-3">
+                    <div class="col-12">
+                      <h3 class="fH-text">Mother</h3>
+                    </div>
+                    <div class="col-2">
+                      <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+                    </div>
+                    <div class="col-10">
+                      <h4 class="mt-3">High Blood Pressure</h4>
+                  </div>
+                  <div class="col-2">
+                    <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+                  </div>
+                  <div class="col-10">
+                    <h4 class="mt-3">High Blood Pressure</h4>
+                  </div>
+                </li>
+                <li>
+                  <div class="row row-text-f mb-3">
+                    <div class="col-12">
+                      <h3 class="fH-text">Mother</h3>
+                    </div>
+                    <div class="col-2">
+                      <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+                    </div>
+                    <div class="col-10">
+                      <h4 class="mt-3">High Blood Pressure</h4>
+                  </div>
+                  <div class="col-2">
+                    <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+                  </div>
+                  <div class="col-10">
+                    <h4 class="mt-3">High Blood Pressure</h4>
+                  </div>
+                </li>
+                <li>
+                  <div class="row row-text-f mb-3">
+                    <div class="col-12">
+                      <h3 class="fH-text">Mother</h3>
+                    </div>
+                    <div class="col-2">
+                      <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+                    </div>
+                    <div class="col-10">
+                      <h4 class="mt-3">High Blood Pressure</h4>
+                  </div>
+                  <div class="col-2">
+                    <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+                  </div>
+                  <div class="col-10">
+                    <h4 class="mt-3">High Blood Pressure</h4>
+                  </div>
+                </li>
+                <li>
+                  <div class="row row-text-f mb-3">
+                    <div class="col-12">
+                      <h3 class="fH-text">Mother</h3>
+                    </div>
+                    <div class="col-2">
+                      <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+                    </div>
+                    <div class="col-10">
+                      <h4 class="mt-3">High Blood Pressure</h4>
+                  </div>
+                  <div class="col-2">
+                    <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+                  </div>
+                  <div class="col-10">
+                    <h4 class="mt-3">High Blood Pressure</h4>
+                  </div>
+                </li>
+                <li>
+                  <div class="row row-text-f mb-3">
+                    <div class="col-12">
+                      <h3 class="fH-text">Mother</h3>
+                    </div>
+                    <div class="col-2">
+                      <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+                    </div>
+                    <div class="col-10">
+                      <h4 class="mt-3">High Blood Pressure</h4>
+                  </div>
+                  <div class="col-2">
+                    <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+                  </div>
+                  <div class="col-10">
+                    <h4 class="mt-3">High Blood Pressure</h4>
+                  </div>
+                </li>
+                <li>
+                  <div class="row row-text-f mb-3">
+                    <div class="col-12">
+                      <h3 class="fH-text">Mother</h3>
+                    </div>
+                    <div class="col-2">
+                      <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+                    </div>
+                    <div class="col-10">
+                      <h4 class="mt-3">High Blood Pressure</h4>
+                  </div>
+                  <div class="col-2">
+                    <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+                  </div>
+                  <div class="col-10">
+                    <h4 class="mt-3">High Blood Pressure</h4>
+                  </div>
+                </li>
+                <li>
+                  <div class="row row-text-f">
+                    <div class="col-12">
+                      <h3 class="fH-text">Mother</h3>
+                    </div>
+                    <div class="col-2">
+                      <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+                    </div>
+                    <div class="col-10">
+                      <h4 class="mt-3">High Blood Pressure</h4>
+                  </div>
+                  <div class="col-2">
+                    <img src="{{url('imgs/01.png')}}" width="60" alt="...">
+                  </div>
+                  <div class="col-10">
+                    <h4 class="mt-3">High Blood Pressure</h4>
+                  </div>
+                </li>
+              </ul>
             </div>
-            <div class="card-body pt-0">
-              <div class="row">
-                <div class="col">
-                  <div class="card-profile-stats d-flex justify-content-center">
+          </div>
+        </div>
+      </div>
+      <div class="card female-bg">
+        <h2 class="row mt-4 ml-5 ">Female History</h2>
+        <div class="row mt-2 mr-auto ml-auto ">
+          <div class="col-xl-6 col-md-2 col-xs-12">
+            <div class="card card-stats">
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-auto">
                     <div>
-                      <span class="heading">22</span>
-                      <h2 class="h3 text-gray">Doctor</h2>
-                    </div>
-                    <div>
-                      <span class="heading">10</span>
-                      <h2 class="h3 text-gray">Ridology</h2>
-                    </div>
-                    <div>
-                      <span class="heading">89</span>
-                      <h2 class="h3 text-gray">Test</h2>
+                      <img src="{{url('imgs/prng.png')}}" width="60" alt="...">
                     </div>
                   </div>
-                </div>
-              </div>
-              <h5 class="h3 font-weight-700 mb-5 text-center mt-3">{{$patient->firstName}}</h5>
-              <div class="">
-                <h5 class="h4 mt-3"><i class="fas fa-male mr-4"></i>{{$patient->gender}}</h5>
-                <h5 class="h4  mt-3"><i class="fa fa-calendar-check mr-3" aria-hidden="true"></i> {{$patient->BirthDate}}</h5>
-                <div class="h4  mt-3"><i class="fas fa-location-arrow mr-3"></i> {{$patient->country}}</div>
-                <div class="h4  mt-3"><i class="fas fa-mail-bulk mr-3"></i> {{$patient->email}}</div>
-                <div class="h4 mt-3 mb-5"><i class="fa fa-phone mr-3" aria-hidden="true"></i> {{$patient->phoneNumber}}
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-3">Pregnency</h5>
+                    <span class="h3 font-weight-bold mb-0">170 Cm</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-xl-8 order-xl-1">
-          <div class="card">
-            <div class="card-header">
-              <div class="row align-items-center">
-                <div class="col-8">
-                  <h3 class="mb-0">Edit profile</h3>
+          <div class="col-xl-6 col-md-2 col-xs-12">
+            <div class="card card-stats">
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-auto">
+                    <div>
+                      <img src="{{url('imgs/pain.png')}}" width="60" alt="...">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-3">Complicetion in Deliveries</h5>
+                    <span class="h3 font-weight-bold mb-0">No</span>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="card-body">
-              <form>
-                <h6 class="heading-small text-muted mb-4">User information</h6>
-                <div class="pl-lg-4">
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-height">Height</label>
-                        <input type="text" id="input-height" class="form-control" placeholder="198 Cm" value="170 Cm">
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-Weight">Weight</label>
-                        <input type="email" id="input-Weight" class="form-control" placeholder="70 Kilogram" value="70 Kg">
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-blood">Blood</label>
-                        <input type="email" id="input-blood" class="form-control" placeholder="AB+" value="A+">
-                      </div>
+          </div>
+          <div class="col-xl-4 col-md-2 col-xs-12">
+            <div class="card card-stats">
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-auto">
+                    <div>
+                      <img src="{{url('imgs/delivery.png')}}" width="60" alt="...">
                     </div>
                   </div>
-                <hr class="my-4" />
-                <!-- Address -->
-                <h6 class="heading-small text-muted mb-4">Contact information</h6>
-                <div class="pl-lg-4">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-address">Address</label>
-                        <input id="input-address" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-city">City</label>
-                        <input type="text" id="input-city" class="form-control" placeholder="City" value="New York">
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-country">Country</label>
-                        <input type="text" id="input-country" class="form-control" placeholder="Country" value="United States">
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-country">Postal code</label>
-                        <input type="number" id="input-postal-code" class="form-control" placeholder="Postal code">
-                      </div>
-                    </div>
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-3">Types of Deliveries</h5>
+                    <span class="h3 font-weight-bold mb-0">170 Cm</span>
                   </div>
                 </div>
-                <hr class="my-4" />
-                <!-- Description -->
-                <h6 class="heading-small text-muted mb-4">About me</h6>
-                <div class="pl-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label">About Me</label>
-                    <textarea rows="4" class="form-control" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-2 col-xs-12">
+            <div class="card card-stats">
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-auto">
+                    <div>
+                      <img src="{{url('imgs/beby.png')}}" width="60" alt="...">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-3">Abortion</h5>
+                    <span class="h3 font-weight-bold mb-0">170 Cm</span>
                   </div>
                 </div>
-              </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-2 col-xs-12">
+            <div class="card card-stats">
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-auto">
+                    <div>
+                      <img src="{{url('imgs/noPreg.png')}}" width="60" alt="...">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-3">Contraceptives</h5>
+                    <span class="h3 font-weight-bold mb-0">Yes</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Footer -->
+    @include('backEnd.layoutes.footer')
+    <!-- footer -->
   </div>
+
+
+<!-- profiel patient -->
+
 
 
 @stop

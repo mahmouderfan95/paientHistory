@@ -35,7 +35,7 @@ class backEndController extends Controller
         if(! Auth::guard($request->get('guard'))->attempt($attmp)){
             return redirect()->back()->with('msg','email or passord incorrect');
         }
-        return redirect('en/dashbord/' . $request->get('guard') . '/profile' . '/' . auth()->guard($request->get('guard'))->user()->id);
+        return redirect('en/dashbord/' . $request->get('guard') . '/edit-profile' . '/' . auth()->guard($request->get('guard'))->user()->id);
 
 
     }

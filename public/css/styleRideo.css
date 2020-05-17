@@ -106,7 +106,7 @@ button {
   color: #868686;
 }
 
-.form .group input[type=text], .form .group [type=password] {
+.form .group input[type=text],.form .group input[type=email], .form .group [type=password] {
   background-color: transparent;
   padding: 0.75em 1.5em;
   line-height: 1.5em;
@@ -125,18 +125,18 @@ button {
   transition: 0.3s cubic-bezier(0.64, 0.09, 0.08, 1) all;
 }
 
-.form .group input[type=text]:focus, .form .group input[type=text]:valid, .form .group [type=password]:focus, .form .group [type=password]:valid {
+.form .group input[type=text]:focus, .form .group input[type=email]:focus, .form .group input[type=text]:valid,.form .group input[type=email]:valid, .form .group [type=password]:focus, .form .group [type=password]:valid {
   background-position: 0 0;
 }
 
-.form .group input[type=text]:focus ~ label, .form .group input[type=text]:valid ~ label, .form .group [type=password]:focus ~ label, .form .group [type=password]:valid ~ label {
+.form .group input[type=text]:focus ~ label, .form .group input[type=text]:valid ~ label, .form .group [type=password]:focus ~ label, .form .group [type=password]:valid ~ label, .form .group [type=email]:focus ~ label, .form .group [type=email]:valid ~ label {
   color: #0478c9;
   font-size: 12pt;
   font-weight: 700;
   top: -1.5em;
 }
 
-.form .group input[type=text]:focus, .form .group [type=password]:focus {
+.form .group input[type=text]:focus, .form .group [type=password]:focus, .form .group [type=email]:focus {
   outline: none;
 }
 

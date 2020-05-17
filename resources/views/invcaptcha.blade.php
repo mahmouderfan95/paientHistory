@@ -1,327 +1,114 @@
 @extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+  box-sizing: border-box;
+}
 
-@section('style')
-<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-@endsection
+body {
+  margin: 0;
+}
 
-@section('content')
-<div class="container">
-    <div class="row">
-    	<div class="col-md-12">
-    		<div class="card card-default">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <strong>Laravelcode - Google Firebase Phone No. Auththentication With No reCaptcha Using Custom UI</strong>
-                        </div>
-                    </div>
+#container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.hidden {
+  display: none;
+}
+
+#user-info {
+  border: 1px solid #CCC;
+  clear: both;
+  margin: 0 auto 20px;
+  max-width: 400px;
+  padding: 10px;
+  text-align: left;
+}
+
+#photo-container {
+  background-color: #EEE;
+  border: 1px solid #CCC;
+  float: left;
+  height: 80px;
+  margin-right: 10px;
+  width: 80px;
+}
+
+#photo {
+  height: 80px;
+  margin: 0;
+  width: 80px;
+}
+
+@media (max-width: 300px) {
+  #photo-container,
+  #photo {
+    height: 40px;
+    width: 40px;
+  }
+}
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+            apiKey: "AIzaSyAxpp29gpMYtii4gUTn7iz0EOIisNOJyoQ",
+            authDomain: "laraveltesting-a97b8.firebaseapp.com",
+            databaseURL: "https://laraveltesting-a97b8.firebaseio.com",
+            projectId: "laraveltesting-a97b8",
+            storageBucket: "laraveltesting-a97b8.appspot.com",
+            messagingSenderId: "G-N2BHPZG2XF"
+            };
+            firebase.initializeApp(config);
+        </script>
+        <script src="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css" />
+</head>
+<body>
+    <div id="container">
+        <h3>Firebase Phone Number Auth. Demo</h3>
+        <div id="loading">Loading...</div>
+        <div id="loaded" class="hidden">
+          <div id="main">
+            <div id="user-signed-in" class="hidden">
+              <div id="user-info">
+                <div id="photo-container">
+                  <img id="photo">
                 </div>
-
-                <div class="card-body">
-                    <form id="sign-in-form" action="#">
-                    <!-- Input to enter the phone number -->
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                      <input class="mdl-textfield__input" type="text" pattern="\+[0-9\s\-\(\)]+" id="phone-number">
-                      <label class="mdl-textfield__label" for="phone-number">Enter your phone number...</label>
-                      <span class="mdl-textfield__error">Input is not an international phone number!</span>
-                    </div>
-                      <code>Ex. +919898989898</code>
-
-                    <!-- Sign-in button -->
-                    <button disabled class="mdl-button mdl-js-button mdl-button--raised" id="sign-in-button">Sign-in</button>
-                  </form>
-
-                  <!-- Button that handles sign-out -->
-                  <button class="mdl-button mdl-js-button mdl-button--raised" id="sign-out-button">Sign-out</button>
-
-                  <form id="verification-code-form" action="#">
-                    <!-- Input to enter the verification code -->
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                      <input class="mdl-textfield__input" type="text" id="verification-code">
-                      <label class="mdl-textfield__label" for="verification-code">Enter the verification code...</label>
-                    </div>
-
-                    <!-- Button that triggers code verification -->
-                    <input type="submit" class="mdl-button mdl-js-button mdl-button--raised" id="verify-code-button" value="Verify Code"/>
-                    <!-- Button to cancel code verification -->
-                    <button class="mdl-button mdl-js-button mdl-button--raised" id="cancel-verify-code-button">Cancel</button>
-                  </form>
-                </div>
+                <div id="name"></div>
+                <div id="email"></div>
+                <div id="phone"></div>
+                <div class="clearfix"></div>
+              </div>
+              <p>
+                <button id="sign-out">Sign Out</button>
+                <button id="delete-account">Delete account</button>
+              </p>
             </div>
-    	</div>
-    </div>
-    <br />
-    <br />
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card card-default">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <strong>Laravelcode - User sign-in status</strong>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div class="user-details-container">
-                        Firebase sign-in status: <span id="sign-in-status">Unknown</span>
-                        <div>Firebase auth <code>currentUser</code> object value:</div>
-                        <pre><code id="account-details">null</code></pre>
-                    </div>
-                </div>
+            <div id="user-signed-out" class="hidden">
+              <h4>You are signed out.</h4>
+              <div id="firebaseui-spa">
+                <h3>Single Page App mode:</h3>
+                <div id="firebaseui-container"></div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
-@endsection
+      </div>
+      <script src="app.js"></script>
+  </body>
 
-@section('jquery')
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
-
-<script type="text/javascript">
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyAxpp29gpMYtii4gUTn7iz0EOIisNOJyoQ",
-        authDomain: "laraveltesting-a97b8.firebaseapp.com",
-        databaseURL: "https://laraveltesting-a97b8.firebaseio.com",
-        projectId: "laraveltesting-a97b8",
-        storageBucket: "laraveltesting-a97b8.appspot.com",
-        messagingSenderId: "567750413175",
-        appId: "1:567750413175:web:cfd77cada72d1aadcc6f72",
-        measurementId: "G-N2BHPZG2XF"
-    };
-    firebase.initializeApp(config);
-
-    var database = firebase.database();
-  /**
-   * Set up UI event listeners and registering Firebase auth listeners.
-   */
-  window.onload = function() {
-    // Listening for auth state changes.
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-        var uid = user.uid;
-        var email = user.email;
-        var photoURL = user.photoURL;
-        var phoneNumber = user.phoneNumber;
-        var isAnonymous = user.isAnonymous;
-        var displayName = user.displayName;
-        var providerData = user.providerData;
-        var emailVerified = user.emailVerified;
-      }
-      updateSignInButtonUI();
-      updateSignInFormUI();
-      updateSignOutButtonUI();
-      updateSignedInUserStatusUI();
-      updateVerificationCodeFormUI();
-    });
-
-    // Event bindings.
-    document.getElementById('sign-out-button').addEventListener('click', onSignOutClick);
-    document.getElementById('phone-number').addEventListener('keyup', updateSignInButtonUI);
-    document.getElementById('phone-number').addEventListener('change', updateSignInButtonUI);
-    document.getElementById('verification-code').addEventListener('keyup', updateVerifyCodeButtonUI);
-    document.getElementById('verification-code').addEventListener('change', updateVerifyCodeButtonUI);
-    document.getElementById('verification-code-form').addEventListener('submit', onVerifyCodeSubmit);
-    document.getElementById('cancel-verify-code-button').addEventListener('click', cancelVerification);
-
-    // [START appVerifier]
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
-      'size': 'invisible',
-      'callback': function(response) {
-        // reCAPTCHA solved, allow signInWithPhoneNumber.
-        onSignInSubmit();
-      }
-    });
-    // [END appVerifier]
-
-    recaptchaVerifier.render().then(function(widgetId) {
-      window.recaptchaWidgetId = widgetId;
-      updateSignInButtonUI();
-    });
-  };
-
-  /**
-   * Function called when clicking the Login/Logout button.
-   */
-  function onSignInSubmit() {
-    if (isPhoneNumberValid()) {
-      window.signingIn = true;
-      updateSignInButtonUI();
-      var phoneNumber = getPhoneNumberFromUserInput();
-      var appVerifier = window.recaptchaVerifier;
-      firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
-          .then(function (confirmationResult) {
-            // SMS sent. Prompt user to type the code from the message, then sign the
-            // user in with confirmationResult.confirm(code).
-            window.confirmationResult = confirmationResult;
-            window.signingIn = false;
-            updateSignInButtonUI();
-            updateVerificationCodeFormUI();
-            updateVerifyCodeButtonUI();
-            updateSignInFormUI();
-          }).catch(function (error) {
-            // Error; SMS not sent
-            console.error('Error during signInWithPhoneNumber', error);
-            window.alert('Error during signInWithPhoneNumber:\n\n'
-                + error.code + '\n\n' + error.message);
-            window.signingIn = false;
-            updateSignInFormUI();
-            updateSignInButtonUI();
-          });
-    }
-  }
-
-  /**
-   * Function called when clicking the "Verify Code" button.
-   */
-  function onVerifyCodeSubmit(e) {
-    e.preventDefault();
-    if (!!getCodeFromUserInput()) {
-      window.verifyingCode = true;
-      updateVerifyCodeButtonUI();
-      var code = getCodeFromUserInput();
-      confirmationResult.confirm(code).then(function (result) {
-        // User signed in successfully.
-        var user = result.user;
-        window.verifyingCode = false;
-        window.confirmationResult = null;
-        updateVerificationCodeFormUI();
-      }).catch(function (error) {
-        // User couldn't sign in (bad verification code?)
-        console.error('Error while checking the verification code', error);
-        window.alert('Error while checking the verification code:\n\n'
-            + error.code + '\n\n' + error.message);
-        window.verifyingCode = false;
-        updateSignInButtonUI();
-        updateVerifyCodeButtonUI();
-      });
-    }
-  }
-
-  /**
-   * Cancels the verification code input.
-   */
-  function cancelVerification(e) {
-    e.preventDefault();
-    window.confirmationResult = null;
-    updateVerificationCodeFormUI();
-    updateSignInFormUI();
-  }
-
-  /**
-   * Signs out the user when the sign-out button is clicked.
-   */
-  function onSignOutClick() {
-    firebase.auth().signOut();
-  }
-
-  /**
-   * Reads the verification code from the user input.
-   */
-  function getCodeFromUserInput() {
-    return document.getElementById('verification-code').value;
-  }
-
-  /**
-   * Reads the phone number from the user input.
-   */
-  function getPhoneNumberFromUserInput() {
-    return document.getElementById('phone-number').value;
-  }
-
-  /**
-   * Returns true if the phone number is valid.
-   */
-  function isPhoneNumberValid() {
-    var pattern = /^\+[0-9\s\-\(\)]+$/;
-    var phoneNumber = getPhoneNumberFromUserInput();
-    return phoneNumber.search(pattern) !== -1;
-  }
-
-  /**
-   * Re-initializes the ReCaptacha widget.
-   */
-  function resetReCaptcha() {
-    if (typeof grecaptcha !== 'undefined'
-        && typeof window.recaptchaWidgetId !== 'undefined') {
-      grecaptcha.reset(window.recaptchaWidgetId);
-    }
-  }
-
-  /**
-   * Updates the Sign-in button state depending on ReCAptcha and form values state.
-   */
-  function updateSignInButtonUI() {
-    document.getElementById('sign-in-button').disabled =
-        !isPhoneNumberValid()
-        || !!window.signingIn;
-  }
-
-  /**
-   * Updates the Verify-code button state depending on form values state.
-   */
-  function updateVerifyCodeButtonUI() {
-    document.getElementById('verify-code-button').disabled =
-        !!window.verifyingCode
-        || !getCodeFromUserInput();
-  }
-
-  /**
-   * Updates the state of the Sign-in form.
-   */
-  function updateSignInFormUI() {
-    if (firebase.auth().currentUser || window.confirmationResult) {
-      document.getElementById('sign-in-form').style.display = 'none';
-    } else {
-      resetReCaptcha();
-      document.getElementById('sign-in-form').style.display = 'block';
-    }
-  }
-
-  /**
-   * Updates the state of the Verify code form.
-   */
-  function updateVerificationCodeFormUI() {
-    if (!firebase.auth().currentUser && window.confirmationResult) {
-      document.getElementById('verification-code-form').style.display = 'block';
-    } else {
-      document.getElementById('verification-code-form').style.display = 'none';
-    }
-  }
-
-  /**
-   * Updates the state of the Sign out button.
-   */
-  function updateSignOutButtonUI() {
-    if (firebase.auth().currentUser) {
-      document.getElementById('sign-out-button').style.display = 'block';
-    } else {
-      document.getElementById('sign-out-button').style.display = 'none';
-    }
-  }
-
-  /**
-   * Updates the Signed in user status panel.
-   */
-  function updateSignedInUserStatusUI() {
-    var user = firebase.auth().currentUser;
-    if (user) {
-      document.getElementById('sign-in-status').textContent = 'Signed in';
-      document.getElementById('account-details').textContent = JSON.stringify(user, null, '  ');
-    } else {
-      document.getElementById('sign-in-status').textContent = 'Signed out';
-      document.getElementById('account-details').textContent = 'null';
-    }
-  }
-</script>
-@endsection
+</html>
