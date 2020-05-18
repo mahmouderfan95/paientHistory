@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\models\Patien;
 use App\models\Agree;
 use App\Http\Requests\backEnd\patien\Store;
+use App\Http\Requests\backEnd\patien\Update;
 use Image;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\patienWelcome;
@@ -51,8 +52,15 @@ class patienController extends Controller
         return view('backEnd.patien.edit-profile',compact('patient','agrees'));
         // return dd(Patien::find(1)->first()->agrees());
     }
-    public function updateProfile($id,REQUEST $request){
-        // $patient = Patien::findOrFail($id);
+    public function updateProfile($id,Update $request){
+        $patient = Patien::findOrFail($id);
+        $patienData = $request->all();
+        if($patienData['agree_name'] && $patienData['agree_name'] !== ''){
+            $patient->agrees()->sync($patienData['agree_name']);
+        }
+        $patienUpdate = Patien::update($patienData);
+
+        //return dd($request->all());
 
     }
     public function logout(){

@@ -29,8 +29,9 @@ class CreatePatiensTable extends Migration
             $table->integer('width')->default(70);
             $table->string('blood')->default('A+');
             $table->string('country')->default('Egypt');
-            // $table->integer('postalCode')->nullable();
-            // $table->text('aboutMe')->default('about me bla bla bla');
+            $table->string('cigarettes')->nullable();
+            $table->string('tobacco')->nullable();
+            $table->string('drug')->nullable();
             $table->string('role');
             $table->timestamps();
         });

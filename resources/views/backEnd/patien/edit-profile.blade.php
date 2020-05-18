@@ -172,6 +172,9 @@
             </div>
             <div class="card-body">
               <!-- form edit profile -->
+              @foreach($errors->all() as $error)
+                <div class="alert alert-danger">{{$error}}</div>
+              @endforeach
               <form action="{{route('update.profile',$patient->id)}}" method="POST">
                   {{ csrf_field() }}
                   <input type="hidden" name = "_method" value="PUT">
@@ -197,14 +200,14 @@
                             <div class="col-md-4">
                               <label class="title-label d-block">Blood</label>
                                 <select class="ui selection dropdown" name="blood">
-                                  <option value="">A+</option>
-                                  <option value="0">A-</option>
-                                  <option value="1">B+</option>
-                                  <option value="2">B-</option>
-                                  <option value="3">O+</option>
-                                  <option value="4">O-</option>
-                                  <option value="5">AB+</option>
-                                  <option value="6">AB-</option>
+                                  <option value="A+">A+</option>
+                                  <option value="A-">A-</option>
+                                  <option value="B+">B+</option>
+                                  <option value="B-">B-</option>
+                                  <option value="o+">O+</option>
+                                  <option value="o-">O-</option>
+                                  <option value="AB+">AB+</option>
+                                  <option value="AB-">AB-</option>
                                 </select>
                             </div>
                           </div>
@@ -227,7 +230,7 @@
                                   <div class="col-sm-3">
                                     <div class="field">
                                         <div class="ui checkbox">
-                                        <input name = "name[]" type="checkbox" tabindex="0" class="hidden">
+                                        <input name = "agree_name[]" type="checkbox" tabindex="0" class="hidden">
                                         <label class="label-input">{{$agree->name}}</label>
                                         </div>
                                     </div>
@@ -431,7 +434,7 @@
                             <input class="ui radio checkbox" type="radio" name="colonscopy"  value="1"  />&nbsp; <label class="font-weight-600">Yes</label> &nbsp;&nbsp;
                             <input class="ui radio checkbox" type="radio" name="colonscopy" value="2" /> &nbsp; <label class="font-weight-600">No</label>
                             <div id="types1" class="desc col-8" style="display: none;">
-                                <input class="form-control" type="date">
+                                <input class="form-control" type="date" name="colonscopy_data">
                             </div>
                             <div id="types2" class="desc" style="display: none;">
                             </div>
@@ -443,7 +446,7 @@
                             <input class="ui radio checkbox" type="radio" name="mammogram"  value="3"  />&nbsp; <label class="font-weight-600">Yes</label> &nbsp;&nbsp;
                             <input class="ui radio checkbox" type="radio" name="mammogram" value="4" />&nbsp;&nbsp; <label class="font-weight-600">No</label>
                             <div id="type3" class="des col-8" style="display: none;">
-                                <input class="form-control" type="date">
+                                <input class="form-control" type="date" name="mammogram_data">
                             </div>
                             <div id="type4" class="des" style="display: none;"></div>
                         </div>
@@ -454,7 +457,7 @@
                             <input class="ui radio checkbox" type="radio" name="prc"  value="5"  />&nbsp; <label class="font-weight-600">Yes</label> &nbsp;&nbsp;
                             <input class="ui radio checkbox" type="radio" name="prc" value="6" />&nbsp;&nbsp; <label class="font-weight-600">No</label>
                             <div id="prct5" class="dese col-8" style="display: none;">
-                                <input class="form-control" type="date">
+                                <input class="form-control" type="date" name="prc_data">
                             </div>
                             <div id="prct6" class="dese" style="display: none;"></div>
                         </div>
@@ -494,16 +497,16 @@
                                   <div class="inline field">
                                     <label class="h6 font-weight-bold" style="font-size: 12pt; margin-bottom: 8px;">Alcohol</label>
                                     <select name="alcohol" class="label ui large selection fluid dropdown mb-4">
-                                      <option value="">Type of Alcohol</option>
-                                      <option value="1">High</option>
-                                      <option value="2">Middle</option>
-                                      <option value="3">Low</option>
+                                      <option value="0">Type of Alcohol</option>
+                                      <option value="beer">Beer</option>
+                                      <option value="wine">Wine</option>
+                                      <option value="liquor">liquor</option>
                                     </select>
                                     <select name="alcoholtype" class="label ui large selection fluid dropdown">
-                                      <option value="">Severity</option>
-                                      <option value="1">High</option>
-                                      <option value="2">Middle</option>
-                                      <option value="3">Low</option>
+                                      <option value="0">Severity</option>
+                                      <option value="high">High</option>
+                                      <option value="middle">Middle</option>
+                                      <option value="low">Low</option>
                                     </select>
                                   </div>
                                 </div>
@@ -517,10 +520,10 @@
                                   <div class="inline field">
                                     <label class="h2 font-weight-700" style="font-size: 12pt; margin-bottom: 8px;">Cigarettes</label>
                                     <select name="cigarettes" class="label ui large selection fluid dropdown mb-4">
-                                      <option value="">Severity</option>
-                                      <option value="1">High</option>
-                                      <option value="2">Middle</option>
-                                      <option value="3">Low</option>
+                                      <option value="0">Severity</option>
+                                      <option value="high">High</option>
+                                      <option value="middle">Middle</option>
+                                      <option value="low">Low</option>
                                     </select>
                                   </div>
                                 </div>
@@ -534,10 +537,10 @@
                                   <div class="inline field">
                                     <label class="h2 font-weight-700" style="font-size: 12pt; margin-bottom: 8px;">Tobacco</label>
                                     <select name="tobacco" class="label ui large selection fluid dropdown mb-4">
-                                      <option value="">Severity</option>
-                                      <option value="1">High</option>
-                                      <option value="2">Middle</option>
-                                      <option value="3">Low</option>
+                                      <option value="0">Severity</option>
+                                      <option value="high">High</option>
+                                      <option value="middle">Middle</option>
+                                      <option value="low">Low</option>
                                     </select>
                                   </div>
                                 </div>
@@ -551,10 +554,10 @@
                                   <div class="inline field">
                                     <label  class="h2 font-weight-700" style="font-size: 12pt; margin-bottom: 8px;">Drug</label>
                                     <select name="drug" class="label ui large selection fluid dropdown mb-4">
-                                      <option value="">Severity</option>
-                                      <option value="1">High</option>
-                                      <option value="2">Middle</option>
-                                      <option value="3">Low</option>
+                                      <option value="0">Severity</option>
+                                      <option value="high">High</option>
+                                      <option value="middle">Middle</option>
+                                      <option value="low">Low</option>
                                     </select>
                                   </div>
                                 </div>
@@ -572,22 +575,22 @@
                 <div class="pl-lg-4">
                   <div class="col-12">
                     <div class="nav flex-row nav-pills row offset-xl-1 col-12" id="v-pills-tab" role="tablist" aria-orientation="horizontal">
-                      <a class="nav-link col-xl-2 col-md-2 col-4 p-2 mr-1 active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">
+                      <a class="nav-link col-xl-2 col-md-2 col-4 p-2 mr-1 active" id="v-pills-5-tab" data-toggle="pill" href="#v-pills-5" role="tab" aria-controls="v-pills-5" aria-selected="true">
                         <div class="row">
                             <h4 class="text-pills m-auto" style="font-size: 12pt;padding-top:3px;">Mother</h4>
                         </div>
                       </a>
-                      <a class="nav-link col-xl-2 col-md-2 col-4 p-2 mr-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="true">
+                      <a class="nav-link col-xl-2 col-md-2 col-4 p-2 mr-1" id="v-pills-6-tab" data-toggle="pill" href="#v-pills-6" role="tab" aria-controls="v-pills-6" aria-selected="true">
                         <div class="row">
                             <h4 class="text-pills m-auto" style="font-size: 12pt;padding-top:3px;">Father</h4>
                         </div>
                       </a>
-                      <a class="nav-link col-xl-2 col-md-2 col-4 p-2 mr-1" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="true">
+                      <a class="nav-link col-xl-2 col-md-2 col-4 p-2 mr-1" id="v-pills-7-tab" data-toggle="pill" href="#v-pills-7" role="tab" aria-controls="v-pills-7" aria-selected="true">
                         <div class="row">
                             <h4 class="text-pills m-auto" style="font-size: 12pt;padding-top:3px;">Sister</h4>
                         </div>
                       </a>
-                      <a class="nav-link col-xl-2 col-md-2 col-4 p-2 mr-1" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="true">
+                      <a class="nav-link col-xl-2 col-md-2 col-4 p-2 mr-1" id="v-pills-8-tab" data-toggle="pill" href="#v-pills-8" role="tab" aria-controls="v-pills-8" aria-selected="true">
                         <div class="row">
                             <h4 class="text-pills font-weight-700 m-auto" style="font-size: 12pt;padding-top:3px;">Brother</h4>
                         </div>
@@ -595,90 +598,90 @@
                     </div>
                     <div class="col-md-12 p-4 align-items-center js-fullheight animated">
                       <div class="tab-content mr-auto ml-auto" id="v-pills-tabContent">
-                        <div class="tab-pane animated bounce slow py-0 show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
+                        <div class="tab-pane animated bounce slow py-0 show active" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab">
                           <div class="row mb-3 mt-3">
                             <div class="col-xl-9 mb-4 mr-auto ml-auto">
                               <div class="ui form col-12">
                                 <div class="inline field">
                                   <label class="h6 font-weight-bold" style="font-size: 12pt; margin-bottom: 8px;">Mother Diseases</label>
-                                  <select name="mother" multiple="" class="label ui large selection fluid dropdown">
-                                    <option value="">All</option>
-                                    <option value="1">Change Methodology</option>
-                                    <option value="2">Cognitive Computing & AI</option>
-                                    <option value="3">Connectivity & Collaboration</option>
+                                  <select name="mother[]" multiple="" class="label ui large selection fluid dropdown">
+                                    <option value="0">All</option>
+                                    <option value="change_methodology">Change Methodology</option>
+                                    <option value="cognitive">Cognitive Computing & AI</option>
+                                    <option value="Connectivity_&_Collaboration">Connectivity & Collaboration</option>
                                   </select>
                                 </div>
                               </div>
                             </div>
                             <div class="col-xl-9 col-md-4 mb-3 mr-auto ml-auto">
                               <div class="ui input col-12">
-                                <input type="text" placeholder="Other Diseases">
+                                <input name = "other_mother" type="text" placeholder="Other Diseases">
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div class="tab-pane animated bounce slow py-0 show" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
+                        <div class="tab-pane animated bounce slow py-0 show" id="v-pills-6" role="tabpanel" aria-labelledby="v-pills-6-tab">
                           <div class="row mb-3 mt-3">
                             <div class="col-xl-9 mb-4 mr-auto ml-auto">
                               <div class="ui form col-12">
                                 <div class="inline field">
                                   <label class="h2 font-weight-700" style="font-size: 12pt; margin-bottom: 8px;">Father Diseases</label>
-                                  <select name="father" multiple="" class="label ui large selection fluid dropdown">
-                                    <option value="">All</option>
-                                    <option value="1">Change Methodology</option>
-                                    <option value="2">Cognitive Computing & AI</option>
-                                    <option value="3">Connectivity & Collaboration</option>
+                                  <select name="father[]" multiple="" class="label ui large selection fluid dropdown">
+                                    <option value="0">All</option>
+                                    <option value="change_methodology">Change Methodology</option>
+                                    <option value="cognitive_computing_&_aI">Cognitive Computing & AI</option>
+                                    <option value="connectivity_&_collaboration">Connectivity & Collaboration</option>
                                   </select>
                                 </div>
                               </div>
                             </div>
                             <div class="col-xl-9 col-md-4 mb-3 mr-auto ml-auto">
                               <div class="ui input col-12">
-                                <input type="text" placeholder="Other Diseases">
+                                <input name = "other_father" type="text" placeholder="Other Diseases">
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div class="tab-pane animated bounce slow py-0 show" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
+                        <div class="tab-pane animated bounce slow py-0 show" id="v-pills-7" role="tabpanel" aria-labelledby="v-pills-7-tab">
                           <div class="row mb-3 mt-3">
                             <div class="col-xl-9 mb-4 mr-auto ml-auto">
                               <div class="ui form col-12">
                                 <div class="inline field">
                                   <label class="h2 font-weight-700" style="font-size: 12pt; margin-bottom: 8px;">Sister Diseases</label>
-                                  <select name="sister" multiple="" class="label ui large selection fluid dropdown">
-                                    <option value="">All</option>
-                                    <option value="1">Change Methodology</option>
-                                    <option value="2">Cognitive Computing & AI</option>
-                                    <option value="3">Connectivity & Collaboration</option>
+                                  <select name="sister[]" multiple="" class="label ui large selection fluid dropdown">
+                                    <option value="0">All</option>
+                                    <option value="change_methodology">Change Methodology</option>
+                                    <option value="cognitive_computing_&_ai">Cognitive Computing & AI</option>
+                                    <option value="connectivity_&_collaboration">Connectivity & Collaboration</option>
                                   </select>
                                 </div>
                               </div>
                             </div>
                             <div class="col-xl-9 col-md-4 mb-3 mr-auto ml-auto">
                               <div class="ui input col-12">
-                                <input type="text" placeholder="Other Diseases">
+                                <input name = "other_sister" type="text" placeholder="Other Diseases">
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div class="tab-pane animated bounce slow py-0 show" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
+                        <div class="tab-pane animated bounce slow py-0 show" id="v-pills-8" role="tabpanel" aria-labelledby="v-pills-8-tab">
                           <div class="row mb-3 mt-3">
                             <div class="col-xl-9 mb-4 mr-auto ml-auto">
                               <div class="ui form col-12">
                                 <div class="inline field">
                                   <label  class="h2 font-weight-700" style="font-size: 12pt; margin-bottom: 8px;">Brother Diseases</label>
-                                  <select name="btrother" multiple="" class="label ui large selection fluid dropdown">
-                                    <option value="">All</option>
-                                    <option value="1">Change Methodology</option>
-                                    <option value="2">Cognitive Computing & AI</option>
-                                    <option value="3">Connectivity & Collaboration</option>
+                                  <select name="brother[]" multiple="" class="label ui large selection fluid dropdown">
+                                    <option value="0">All</option>
+                                    <option value="change_methodology">Change Methodology</option>
+                                    <option value="cognitive_computing_&_ai">Cognitive Computing & AI</option>
+                                    <option value="connectivity_&_collaboration">Connectivity & Collaboration</option>
                                   </select>
                                 </div>
                               </div>
                             </div>
                             <div class="col-xl-9 col-md-4 mb-3 mr-auto ml-auto">
                               <div class="ui input col-12">
-                                <input type="text" placeholder="Other Diseases">
+                                <input name = "other_brother" type="text" placeholder="Other Diseases">
                               </div>
                             </div>
                           </div>
@@ -686,24 +689,24 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-12">
+                  {{-- <div class="col-12">
                     <div class="nav flex-row nav-pills row offset-xl-1 col-12" id="v-pills-tab" role="tablist" aria-orientation="horizontal">
-                      <a class="nav-link col-xl-2 col-md-2 col-4 p-2 mr-1 active" id="v-pills-5-tab" data-toggle="pill" href="#v-pills-5" role="tab" aria-controls="v-pills-5" aria-selected="true">
+                      <a class="nav-link col-xl-2 col-md-2 col-4 p-2 mr-1 active" id="v-pills-9-tab" data-toggle="pill" href="#v-pills-9" role="tab" aria-controls="v-pills-5" aria-selected="true">
                         <div class="row">
                             <h6 class="text-pills font-weight-700 m-auto p-1" style="font-size: 11pt;">Grandma M</h5>
                         </div>
                       </a>
-                      <a class="nav-link col-xl-2 col-md-2 col-4 p-2 mr-1" id="v-pills-6-tab" data-toggle="pill" href="#v-pills-6" role="tab" aria-controls="v-pills-6" aria-selected="true">
+                      <a class="nav-link col-xl-2 col-md-2 col-4 p-2 mr-1" id="v-pills-10-tab" data-toggle="pill" href="#v-pills-10" role="tab" aria-controls="v-pills-10" aria-selected="true">
                         <div class="row">
                             <h6 class="text-pills font-weight-700 m-auto p-1" style="font-size: 11pt;">Grandma F</h6>
                         </div>
                       </a>
-                      <a class="nav-link col-xl-2 col-md-2 col-4 p-2 mr-1" id="v-pills-7-tab" data-toggle="pill" href="#v-pills-7" role="tab" aria-controls="v-pills-7" aria-selected="true">
+                      <a class="nav-link col-xl-2 col-md-2 col-4 p-2 mr-1" id="v-pills-11-tab" data-toggle="pill" href="#v-pills-11" role="tab" aria-controls="v-pills-11" aria-selected="true">
                         <div class="row">
                             <h6 class="text-pills font-weight-700 m-auto p-1" style="font-size: 11pt;">Grandpa M</h6>
                         </div>
                       </a>
-                      <a class="nav-link col-xl-2 col-md-2 col-4 p-2 mr-1" id="v-pills-8-tab" data-toggle="pill" href="#v-pills-8" role="tab" aria-controls="v-pills-8" aria-selected="true">
+                      <a class="nav-link col-xl-2 col-md-2 col-4 p-2 mr-1" id="v-pills-12-tab" data-toggle="pill" href="#v-pills-12" role="tab" aria-controls="v-pills-12" aria-selected="true">
                         <div class="row">
                             <h6 class="text-pills font-weight-700 m-auto p-1" style="font-size: 11pt;">Grandpa F</h6>
                         </div>
@@ -711,7 +714,7 @@
                     </div>
                     <div class="col-md-12 p-4 align-items-center js-fullheight animated">
                       <div class="tab-content mr-auto ml-auto" id="v-pills-tabContent">
-                        <div class="tab-pane animated bounce slow py-0 show active" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab">
+                        <div class="tab-pane animated bounce slow py-0 show active" id="v-pills-9" role="tabpanel" aria-labelledby="v-pills-9-tab">
                           <div class="row mb-3 mt-3">
                             <div class="col-xl-9 mb-4 mr-auto ml-auto">
                               <div class="ui form col-12">
@@ -733,7 +736,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class="tab-pane animated bounce slow py-0 show" id="v-pills-6" role="tabpanel" aria-labelledby="v-pills-6-tab">
+                        <div class="tab-pane animated bounce slow py-0 show" id="v-pills-10" role="tabpanel" aria-labelledby="v-pills-10-tab">
                           <div class="row mb-3 mt-3">
                             <div class="col-xl-9 mb-4 mr-auto ml-auto">
                               <div class="ui form col-12">
@@ -755,7 +758,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class="tab-pane animated bounce slow py-0 show" id="v-pills-7" role="tabpanel" aria-labelledby="v-pills-7-tab">
+                        <div class="tab-pane animated bounce slow py-0 show" id="v-pills-11" role="tabpanel" aria-labelledby="v-pills-11-tab">
                           <div class="row mb-3 mt-3">
                             <div class="col-xl-9 mb-4 mr-auto ml-auto">
                               <div class="ui form col-12">
@@ -777,7 +780,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class="tab-pane animated bounce slow py-0 show" id="v-pills-8" role="tabpanel" aria-labelledby="v-pills-8-tab">
+                        <div class="tab-pane animated bounce slow py-0 show" id="v-pills-12" role="tabpanel" aria-labelledby="v-pills-12-tab">
                           <div class="row mb-3 mt-3">
                             <div class="col-xl-9 mb-4 mr-auto ml-auto">
                               <div class="ui form col-12">
@@ -801,7 +804,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> --}}
                 </div>
                 <input type="submit" value="submit" class="btn btn-success">
               </form>
